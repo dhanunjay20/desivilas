@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronDown } from 'react-icons/fi';
+import HERO_IMAGE from '../assets/services.jpg'; // Adjust path to your actual asset
 
-const HERO_IMAGE = '/assets/wedding-hero.jpg';
 const FEATURE_IMAGE =
   'https://images.unsplash.com/photo-1606491956689-2e67f4d8e9c2?q=80&w=1600&auto=format&fit=crop';
 const BENEFIT_IMAGE =

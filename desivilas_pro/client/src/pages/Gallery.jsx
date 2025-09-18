@@ -1,33 +1,54 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import HERO_IMAGE from '../assets/gallery.jpg';
 
-// Set a hero image path (place your file in /public/assets or adjust the path)
-const HERO_IMAGE = '/assets/gallery-hero.jpg';
-
-// Images array with mixed widths (cols) and varied aspect ratios for different heights
+// Images with desired spans; aspect handled via safe classes + fallbacks
 const images = [
-  { src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop', alt: 'Plating dish', cols: 2, aspect: 'aspect-[16/9]' },
-  { src: 'https://images.unsplash.com/photo-1506368083636-6defb67639c5?q=80&w=1600&auto=format&fit=crop', alt: 'Roast prep', cols: 1, aspect: 'aspect-[4/5]' },
-  { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop', alt: 'Server with plates', cols: 1, aspect: 'aspect-square' },
-  { src: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop', alt: 'Pasta bowl', cols: 2, aspect: 'aspect-[21/9]' },
-  { src: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop', alt: 'Dessert slice', cols: 1, aspect: 'aspect-[3/4]' },
-  { src: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1600&auto=format&fit=crop', alt: 'Breakfast spread', cols: 1, aspect: 'aspect-[4/3]' },
-  { src: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1600&auto=format&fit=crop', alt: 'Salad plate', cols: 2, aspect: 'aspect-[5/3]' },
-  { src: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1600&auto=format&fit=crop', alt: 'Steak close-up', cols: 1, aspect: 'aspect-[5/6]' },
-  { src: 'https://images.unsplash.com/photo-1526318472357-c87b7ce86654?q=80&w=1600&auto=format&fit=crop', alt: 'Dessert tray', cols: 1, aspect: 'aspect-[4/3]' },
-  { src: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop', alt: 'Veggies and dip', cols: 2, aspect: 'aspect-[2/1]' },
-  { src: 'https://images.unsplash.com/photo-1543357480-c60d40007a3a?q=80&w=1600&auto=format&fit=crop', alt: 'Coffee latte art', cols: 1, aspect: 'aspect-square' },
-  { src: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1600&auto=format&fit=crop', alt: 'Bar counter', cols: 1, aspect: 'aspect-[4/5]' },
+  { src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop', alt: 'Plating dish', cols: 2, kind: 'video' },
+  { src: 'https://images.unsplash.com/photo-1506368083636-6defb67639c5?q=80&w=1600&auto=format&fit=crop', alt: 'Roast prep', cols: 1, kind: 'tall' },
+  { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop', alt: 'Server with plates', cols: 1, kind: 'square' },
+  { src: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop', alt: 'Pasta bowl', cols: 2, kind: 'wide' },
+  { src: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop', alt: 'Dessert slice', cols: 1, kind: 'tall' },
+  { src: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1600&auto=format&fit=crop', alt: 'Breakfast spread', cols: 1, kind: 'classic' },
+  { src: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1600&auto=format&fit=crop', alt: 'Salad plate', cols: 2, kind: 'wide' },
+  { src: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1600&auto=format&fit=crop', alt: 'Steak close-up', cols: 1, kind: 'tallish' },
+  { src: 'https://images.unsplash.com/photo-1526318472357-c87b7ce86654?q=80&w=1600&auto=format&fit=crop', alt: 'Dessert tray', cols: 1, kind: 'classic' },
+  { src: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop', alt: 'Veggies and dip', cols: 2, kind: 'wide' },
+  { src: 'https://images.unsplash.com/photo-1543357480-c60d40007a3a?q=80&w=1600&auto=format&fit=crop', alt: 'Coffee latte art', cols: 1, kind: 'square' },
+  { src: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1600&auto=format&fit=crop', alt: 'Bar counter', cols: 1, kind: 'tall' },
 ];
 
-// Motion variants
+// Map “kind” to safe aspect + fallback height
+const kindToClasses = (kind) => {
+  // Each item gets a min-h fallback so it still shows if aspect-ratio utilities are missing
+  switch (kind) {
+    case 'video':   // 16:9 feel
+      return 'min-h-[220px] sm:min-h-[260px] aspect-video';
+    case 'wide':    // cinematic
+      return 'min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] aspect-video';
+    case 'square':  // square
+      return 'min-h-[220px] aspect-square';
+    case 'tall':    // portrait-ish
+      return 'min-h-[260px] sm:min-h-[300px] aspect-square sm:aspect-video';
+    case 'tallish': // 5:6 feel (approx)
+      return 'min-h-[240px] sm:min-h-[280px] aspect-square';
+    case 'classic': // 4:3 feel (approx)
+    default:
+      return 'min-h-[220px] sm:min-h-[260px] aspect-square';
+  }
+};
+
+// Responsive col span on large screens
+const spanClass = (cols = 1) => {
+  if (cols === 2) return 'lg:col-span-2';
+  if (cols === 3) return 'lg:col-span-3';
+  if (cols === 4) return 'lg:col-span-4';
+  return 'lg:col-span-1';
+};
+
 const gridVariants = {
   hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut', staggerChildren: 0.08, delayChildren: 0.05 },
-  },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut', staggerChildren: 0.08, delayChildren: 0.05 } },
 };
 
 const itemVariants = {
@@ -35,19 +56,9 @@ const itemVariants = {
   show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
 };
 
-// Helper for responsive col spans while keeping classes safelisted for Tailwind JIT
-const spanClass = (cols = 1) => {
-  // Possible classes included to satisfy Tailwind JIT:
-  // 'lg:col-span-1 lg:col-span-2 lg:col-span-3 lg:col-span-4'
-  if (cols === 2) return 'lg:col-span-2';
-  if (cols === 3) return 'lg:col-span-3';
-  if (cols === 4) return 'lg:col-span-4';
-  return 'lg:col-span-1';
-};
-
 const Gallery = () => {
   return (
-    <main className="bg-[#F9F1E7] min-h-screen">
+    <main className="bg-[#F9F1E7] min-h-screen w-full max-w-[100vw] overflow-x-clip">
       {/* Hero */}
       <section className="relative h-[42vh] md:h-[56vh] lg:h-[64vh] w-full overflow-hidden">
         <img src={HERO_IMAGE} alt="Gallery hero" className="absolute inset-0 h-full w-full object-cover" />
@@ -75,9 +86,9 @@ const Gallery = () => {
               variants={itemVariants}
               className={[
                 'relative overflow-hidden rounded-2xl bg-zinc-100',
-                // height via aspect ratios for varied heights
-                img.aspect || 'aspect-[4/3]',
-                // width via column span for varied widths on large screens
+                // Height via safe aspect utilities + min-height fallback
+                kindToClasses(img.kind),
+                // Width via column span for varied widths on large screens
                 spanClass(img.cols),
               ].join(' ')}
             >

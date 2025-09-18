@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Hero image
+const HERO_IMG =
+  'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2400&auto=format&fit=crop';
+
+// Data (unchanged, includes all dishes)
 const menuData = [
   {
     category: 'Appetizers',
@@ -171,94 +176,166 @@ const menuData = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
+/* Variants */
+const sectionFade = { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
+const listContainer = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.12 } } };
+const listItem = { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 120 } } };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: 20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: 'spring', stiffness: 100 },
-  },
-};
+/* Smooth scroll helper respecting sticky headers */
+function scrollIntoViewWithOffset(el, offset = 90) {
+  if (!el) return;
+  const rect = el.getBoundingClientRect();
+  const absoluteY = window.scrollY + rect.top - offset;
+  window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+}
 
 export default function MenuPage() {
   const [expanded, setExpanded] = useState(null);
+  const itemRefs = useRef({}); // map category -> ref
 
-  const toggleCategory = (cat) => {
-    setExpanded(expanded === cat ? null : cat);
-  };
+  useEffect(() => {
+    if (expanded && itemRefs.current[expanded]) {
+      const id = window.setTimeout(() => {
+        scrollIntoViewWithOffset(itemRefs.current[expanded], 96);
+      }, 40);
+      return () => window.clearTimeout(id);
+    }
+  }, [expanded]);
+
+  const toggleCategory = (cat) => setExpanded((prev) => (prev === cat ? null : cat));
 
   return (
-    <main className="bg-gray-50 min-h-screen py-12 px-6 md:px-12">
-      <h1 className="text-5xl font-extrabold text-center mb-12 text-orange-600">Our Menu</h1>
-      <section className="max-w-5xl mx-auto space-y-10">
-        {menuData.map(({ category, items, url, description }) => (
-          <article key={category} className="bg-white rounded-3xl shadow-lg overflow-hidden">
-            <button
-              onClick={() => toggleCategory(category)}
-              className="w-full flex justify-between items-center px-8 py-6 text-left text-3xl font-semibold text-orange-700 hover:bg-orange-100 transition-colors"
-              aria-expanded={expanded === category}
-              aria-controls={`section-${category}`}
-            >
-              <a href={url} target="_blank" rel="noreferrer" className="underline decoration-orange-400">
-                {category}
-              </a>
-              <span className="ml-4 text-4xl select-none">{expanded === category ? '−' : '+'}</span>
-            </button>
+    <main className="relative min-h-screen w-full max-w-[100vw] overflow-x-clip bg-gray-50">
+      {/* Hero (clip to forbid x-overflow from absolute layers) */}
+      <section className="relative h-[42vh] sm:h-[50vh] lg:h-[58vh] overflow-hidden overflow-x-clip">
+        <picture>
+          <img
+            src={HERO_IMG}
+            alt=""
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+        <motion.div
+          variants={sectionFade}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+        >
+          <p className="font-semibold text-orange-400">Fresh • Authentic • Crafted</p>
+          <h1 className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white" style={{ fontFamily: 'serif' }}>
+            Our Menu
+          </h1>
+          <p className="mt-3 max-w-2xl text-white/85">
+            Explore every category—from breakfast classics and street‑style snacks to biryanis, dosas, and rich curries.
+          </p>
+        </motion.div>
+      </section>
 
-            <AnimatePresence>
-              {expanded === category && (
-                <motion.ul
-                  key="content"
-                  id={`section-${category}`}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  variants={containerVariants}
-                  className="px-8 pb-8 space-y-6"
-                >
-                  {description && (
-                    <motion.p
-                      className="text-sm italic text-gray-600 max-w-xl"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
+      {/* Menu (clip section to contain any horizontal transforms) */}
+      <section className="relative overflow-x-clip mx-auto max-w-5xl px-6 md:px-10 lg:px-12 py-12">
+        {menuData.map(({ category, items, url, description }) => {
+          const isOpen = expanded === category;
+          const panelId = `section-${category.replace(/\s+/g, '-')}`;
+          const btnId = `btn-${category.replace(/\s+/g, '-')}`;
+
+          return (
+            <article
+              key={category}
+              ref={(el) => (itemRefs.current[category] = el)}
+              className="mb-6 rounded-3xl bg-white shadow-md ring-1 ring-black/5 scroll-mt-28"
+            >
+              <button
+                id={btnId}
+                onClick={() => toggleCategory(category)}
+                className="flex w-full items-center justify-between px-6 sm:px-8 py-5 sm:py-6 text-left"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-orange-600 font-bold">
+                    {category.charAt(0)}
+                  </span>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="truncate text-2xl sm:text-3xl font-semibold text-orange-700 underline decoration-orange-300 underline-offset-4"
+                    title={category}
+                  >
+                    {category}
+                  </a>
+                </div>
+                <span className="ml-4 select-none text-3xl sm:text-4xl text-orange-500">
+                  {isOpen ? '−' : '+'}
+                </span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="panel"
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={btnId}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                    className="overflow-hidden"
+                  >
+                    <motion.div
+                      variants={listContainer}
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      className="px-6 sm:px-8 pb-8"
                     >
-                      {description}
-                    </motion.p>
-                  )}
-                  {items.map(({ name, description, image }, idx) => (
-                    <motion.li
-                      key={name + idx}
-                      variants={itemVariants}
-                      className="flex flex-col md:flex-row items-start border-b border-gray-200 pb-6 last:border-none"
-                    >
-                      <img
-                        src={image || 'https://via.placeholder.com/120?text=No+Image'}
-                        alt={name}
-                        className="w-28 h-20 object-cover rounded-lg md:mr-6 mb-4 md:mb-0 flex-shrink-0"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-lg text-gray-900 capitalize">{name}</h3>
-                        {description && <p className="text-sm text-gray-600 mt-1 max-w-xl">{description}</p>}
-                      </div>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-          </article>
-        ))}
+                      {description && (
+                        <motion.p
+                          className="mb-4 max-w-2xl text-sm italic text-gray-600"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        >
+                          {description}
+                        </motion.p>
+                      )}
+
+                      <motion.ul className="divide-y divide-gray-200 rounded-2xl bg-white ring-1 ring-gray-100 overflow-hidden">
+                        {items.map(({ name, description, image }, idx) => (
+                          <motion.li
+                            key={`${name}-${idx}`}
+                            variants={listItem}
+                            className="flex flex-col items-start gap-4 p-4 sm:p-5 md:flex-row md:items-center"
+                          >
+                            <img
+                              src={image || 'https://via.placeholder.com/120?text=No+Image'}
+                              alt={name}
+                              loading="lazy"
+                              decoding="async"
+                              className="h-20 w-28 max-w-full flex-shrink-0 rounded-lg object-cover ring-1 ring-gray-200"
+                            />
+                            <div className="min-w-0">
+                              <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
+                              {description && (
+                                <p className="mt-1 max-w-2xl text-sm text-gray-600">{description}</p>
+                              )}
+                            </div>
+                          </motion.li>
+                        ))}
+                      </motion.ul>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </article>
+          );
+        })}
       </section>
     </main>
   );

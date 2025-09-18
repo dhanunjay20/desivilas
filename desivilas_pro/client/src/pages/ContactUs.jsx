@@ -10,8 +10,7 @@ import {
   FiMapPin,
 } from 'react-icons/fi';
 
-const HERO_IMAGE = '/assets/contact-hero.jpg';
-
+import HERO_IMAGE from '../assets/contact_us.jpg'; // Adjust path to your actual asset
 // Prefer the official Maps Embed API format; replace YOUR_API_KEY and the q parameter
 const MAP_EMBED_SRC =
   'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=London+Eye,London';

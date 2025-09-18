@@ -1,195 +1,189 @@
 import React from 'react';
-import { FiArrowUpRight } from 'react-icons/fi';
 import { motion, useReducedMotion } from 'framer-motion';
+import Buttons from '../components/Buttons';
 import heroimg from '../assets/heroimg.jpg';
 
-const Hero = () => {
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.08 * i, duration: 0.55, ease: 'easeOut' },
+  }),
+};
+
+const slideIn = {
+  hidden: { opacity: 0, x: 50, scale: 0.98 },
+  show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
 
-  // Parent container stagger
-  const stagger = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  // Reusable fadeUp variant with index support
-  const fadeUp = {
-    hidden: { opacity: 0, y: 16 },
-    show: (i = 0) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: 0.1 * i, duration: 0.6, ease: 'easeOut' },
-    }),
-  };
-
-  // Subtle animated vignette (disabled if reduced motion)
-  const vignette = {
-    hidden: { opacity: 0.35 },
-    show: {
-      opacity: 0.55,
-      transition: {
-        duration: 1.2,
-        ease: 'easeInOut',
-        repeat: prefersReducedMotion ? 0 : Infinity,
-        repeatType: 'reverse',
-      },
-    },
-  };
-
-  // Badge pop-in
-  const badgePop = {
-    hidden: { opacity: 0, y: 24, rotate: -6, scale: 0.96 },
-    show: {
-      opacity: 1,
-      y: 0,
-      rotate: 0,
-      scale: 1,
-      transition: { delay: 0.4, type: 'spring', stiffness: 260, damping: 24 },
-    },
-  };
-
-  // Floating loop for the image
-  const floatTransition = prefersReducedMotion
-    ? { duration: 0 }
-    : { y: { duration: 3.5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' } };
-
   return (
-    <section className="relative bg-black text-white pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-      {/* Background image (add backgroundAttachment: 'fixed' for parallax on large screens) */}
+    <section className="relative w-full max-w-[100vw] overflow-x-clip text-white pt-28 pb-20 lg:pt-44 lg:pb-32">
+      {/* Background as CSS background-image with cover + position */}
       <div
-        className="absolute inset-0 bg-cover bg-center z-0"
+        className="absolute inset-0 -z-10 bg-no-repeat bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroimg})` }}
+        aria-hidden="true"
+      />
+      {/* Gradient and radial overlays for depth */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/60 to-black/75" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10"
         style={{
-          backgroundImage: `url(${heroimg})`,
-          // backgroundAttachment: 'fixed', // uncomment for parallax on desktops
+          background:
+            'radial-gradient(60% 50% at 75% 30%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 60%), radial-gradient(50% 40% at 15% 70%, rgba(255,149,0,0.10), rgba(0,0,0,0) 70%)',
+          opacity: prefersReducedMotion ? 0.35 : 0.55,
         }}
         aria-hidden="true"
-      >
-        <div className="absolute inset-0 bg-black/70" />
-        <motion.div
-          variants={vignette}
-          initial="hidden"
-          animate="show"
-          className="pointer-events-none absolute inset-0 mix-blend-overlay"
-          style={{
-            background:
-              'radial-gradient(60% 60% at 70% 30%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 60%)',
-          }}
-        />
-      </div>
+      />
 
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center z-10">
-        {/* Left column with staggered children on view */}
+      {/* Content container */}
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:px-8">
+        {/* Left: copy + CTAs */}
         <motion.div
-          variants={stagger}
-          initial="hidden"
+          initial={false}
           whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
-          className="text-center lg:text-left"
+          viewport={{ once: true, amount: 0.55 }}
+          className="lg:col-span-7 text-center lg:text-left"
         >
-          <motion.p
+          <motion.div
             variants={fadeUp}
             custom={0}
-            className="text-orange-400 font-semibold text-lg mb-4"
+            className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm ring-1 ring-white/15"
           >
-            Authentically Spiced
-          </motion.p>
+            <span className="h-2 w-2 rounded-full bg-orange-400" />
+            <span className="text-sm text-white/90">Authentically Indian • Crafted Fresh</span>
+          </motion.div>
 
           <motion.h1
             variants={fadeUp}
             custom={1}
-            className="text-6xl lg:text-8xl font-bold leading-none text-white"
+            className="mt-5 text-5xl leading-[1.05] font-extrabold sm:text-6xl lg:text-7xl"
+            style={{ fontFamily: 'serif' }}
           >
-            Elegantly
-            <br />
-            Served
+            Unforgettable flavors, <br className="hidden sm:block" />
+            elegantly served
           </motion.h1>
 
-          <motion.div
+          <motion.p
             variants={fadeUp}
             custom={2}
-            className="mt-12 flex justify-center lg:justify-start items-center space-x-4"
+            className="mt-5 max-w-2xl text-base sm:text-lg text-white/80 mx-auto lg:mx-0"
           >
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              className="group bg-green-500 text-black font-bold py-3 px-8 rounded-full flex items-center gap-2 hover:bg-green-400 transition-colors"
-            >
-              <span>Get In Touch</span>
-              <motion.span
-                className="inline-block"
-                whileHover={{ x: 3 }}
-                transition={{ type: 'tween', duration: 0.2 }}
-              >
-                <FiArrowUpRight />
-              </motion.span>
-            </motion.button>
+            Bespoke menus for weddings, events, and intimate gatherings precision service and vibrant cuisine come standard.
+          </motion.p>
 
-            <motion.button
-              whileHover={{ scale: 1.07 }}
-              whileTap={{ scale: 0.96 }}
-              className="bg-orange-500 text-white p-3 rounded-full hover:bg-orange-600 transition-colors"
-              aria-label="Open contact"
-            >
-              <FiArrowUpRight size={24} />
-            </motion.button>
+          <motion.div variants={fadeUp} custom={3} className="mt-10 flex justify-center lg:justify-start">
+            <Buttons
+              label="Get In Touch"
+              onPrimaryClick={() => console.log('Get In Touch')}
+              onArrowClick={() => console.log('Hero Arrow')}
+              gap="gap-4"
+            />
           </motion.div>
+
+          {/* Stats row */}
+          <motion.ul
+            variants={fadeUp}
+            custom={4}
+            className="mt-10 flex flex-wrap items-center justify-center gap-6 text-white/80 lg:justify-start"
+          >
+            <li className="flex items-center gap-2"><span className="text-2xl font-bold">10+</span><span className="text-sm">Years</span></li>
+            <li className="flex items-center gap-2"><span className="text-2xl font-bold">5k+</span><span className="text-sm">Reviews</span></li>
+            <li className="flex items-center gap-2"><span className="text-2xl font-bold">100%</span><span className="text-sm">Fresh</span></li>
+          </motion.ul>
         </motion.div>
 
-        {/* Right column (image + badge) reveal on view */}
+        {/* Right: frosted glass card + floating chips */}
         <motion.div
+          variants={slideIn}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
-          className="relative flex justify-center lg:justify-start"
+          viewport={{ once: true, amount: 0.55 }}
+          className="relative lg:col-span-5 flex justify-center lg:justify-end"
         >
-          <div className="relative w-80 h-80 sm:w-96 sm:h-96">
-            {/* Floating circular image */}
-            <motion.div
-              variants={fadeUp}
-              custom={0}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.6 }}
-              animate={{ opacity: 1, y: prefersReducedMotion ? 0 : [0, -8, 0] }}
-              transition={floatTransition}
-              className="w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-black/30"
-              role="img"
-              aria-label="Authentic Indian Dish"
-            >
+          {/* Glass card */}
+          <div className="relative w-full max-w-md rounded-3xl bg-white/10 p-5 backdrop-blur-md ring-1 ring-white/15 shadow-xl">
+            <div className="overflow-hidden rounded-2xl">
               <img
                 src={heroimg}
-                alt="Authentic Indian Dish"
-                className="w-full h-full object-cover"
+                alt="Signature platter"
+                loading="eager"
+                decoding="async"
+                className="h-64 w-full object-cover"
               />
-            </motion.div>
+            </div>
 
-            {/* Review badge */}
-            <motion.div
-              variants={badgePop}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.6 }}
-              className="absolute -bottom-8 right-0 sm:bottom-10 sm:-right-10 bg-zinc-800/80 backdrop-blur-md p-4 rounded-2xl shadow-lg w-52"
-            >
-              <p className="font-bold text-lg mb-2">5K+ Reviews</p>
-              <div className="flex items-center -space-x-3">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Reviewer 1" className="w-10 h-10 rounded-full border-2 border-zinc-700" />
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Reviewer 2" className="w-10 h-10 rounded-full border-2 border-zinc-700" />
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Reviewer 3" className="w-10 h-10 rounded-full border-2 border-zinc-700" />
-                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Reviewer 4" className="w-10 h-10 rounded-full border-2 border-zinc-700" />
-                <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs border-2 border-zinc-700">5k+</div>
+            <div className="mt-5 flex items-start justify-between">
+              <div>
+                <h3 className="text-xl font-bold" style={{ fontFamily: 'serif' }}>Chef’s Seasonal Tasting</h3>
+                <p className="mt-1 text-sm text-white/80">A rotating selection curated for the season.</p>
               </div>
-            </motion.div>
+              <div className="text-right">
+                <p className="text-sm text-white/70">Tonight’s rating</p>
+                <p className="text-lg font-semibold">4.9 ★</p>
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {['Tandoori', 'Masala', 'Smoked', 'Vegan'].map((t) => (
+                <span key={t} className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/90 ring-1 ring-white/15">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-6 flex items-center justify-between">
+              <span className="text-sm text-white/70">Available this week</span>
+              <a href="/menu" className="text-sm font-semibold text-white/90 underline underline-offset-4 hover:text-white">
+                View menu
+              </a>
+            </div>
           </div>
+
+          {/* Floating chips (disabled for reduced motion users) */}
+          {!prefersReducedMotion && (
+            <>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
+                className="absolute -left-2 -top-4 hidden sm:block"
+              >
+                <span className="rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold shadow-lg">
+                  Event Ready
+                </span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ delay: 0.35, duration: 0.6, ease: 'easeOut' }}
+                className="absolute -right-3 top-24 hidden sm:block"
+              >
+                <span className="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1 text-xs backdrop-blur-sm shadow-md">
+                  Seasonal Picks
+                </span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+                className="absolute -bottom-6 left-10 hidden sm:block"
+              >
+                <span className="rounded-full bg-white/15 ring-1 ring-white/20 px-3 py-1 text-xs backdrop-blur-sm shadow-md">
+                  Chef’s Pick
+                </span>
+              </motion.div>
+            </>
+          )}
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

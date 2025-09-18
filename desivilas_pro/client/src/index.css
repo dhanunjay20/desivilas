@@ -4,11 +4,5 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: "Fraunces", serif;
-}
 
-.clip-path-team {
-  clip-path: polygon(0% 20%, 20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%);
-}
 

@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'; // Using NavLink for active styles
-import { FiMenu, FiX } from 'react-icons/fi'; // Using icons for the menu button
+import { NavLink } from 'react-router-dom';
+import { FiMenu, FiX } from 'react-icons/fi';
 
-// By putting the ref forwarding here, this component is now ready for the dynamic padding logic from the previous step.
+import logo from '../assets/desivilas_logo.png';
+
 const Header = React.forwardRef((props, ref) => {
-  // State to manage the mobile menu's open/closed status
   const [isOpen, setIsOpen] = useState(false);
-
-  // Function to toggle the menu
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen((v) => !v);
 
   const navItems = [
     { name: 'home', href: '/' },
@@ -21,37 +17,39 @@ const Header = React.forwardRef((props, ref) => {
     { name: 'order online', href: '/order' },
   ];
 
-  // --- UPDATED LINK STYLES ---
-  const activeLinkClasses = "text-orange-500"; // Active is orange
-
-  // Styles for Desktop (light background)
-  const desktopBase = "px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors duration-300";
-  const desktopInactive = "text-black hover:text-green-500"; // Initially black, hover green
-
-  // Styles for Mobile (dark background)
-  const mobileBase = "block py-3 text-lg";
-  const mobileInactive = "text-neutral-300 hover:text-green-500"; // Initially light gray, hover green for visibility
+  const activeLinkClasses = 'text-orange-500';
+  const desktopBase = 'px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors duration-300';
+  const desktopInactive = 'text-black hover:text-green-500';
+  const mobileBase = 'block py-3 text-lg';
+  const mobileInactive = 'text-neutral-300 hover:text-green-500';
 
   return (
-    // Attach the forwarded ref to the main header element
-    <header ref={ref} className="fixed top-0 left-0 w-full z-50 bg-zinc-900 backdrop-blur-lg">
-      <div className="max-w-7xl mx-auto flex justify-between items-center p-4 md:px-8">
-        {/* Logo Section */}
-        <NavLink to="/" className="text-4xl font-bold tracking-wide">
-          <span className="text-orange-500">Desi</span>
-          <span className="text-white"> vilas</span>
+    <header
+      ref={ref}
+      className="fixed top-0 left-0 w-full max-w-[100vw] overflow-x-clip z-50 bg-zinc-900/100 backdrop-blur-lg"
+    >
+      {/* Row */}
+      <div className="w-full max-w-7xl mx-auto flex justify-between items-center py-3 md:py-4 px-4 md:px-8">
+        {/* Larger responsive logo */}
+        <NavLink to="/" className="flex items-center gap-3" aria-label="Desi Vilas home">
+          <img
+            src={logo}
+            alt="Desi Vilas"
+            width={200}             // intrinsic dimensions (2x helps retina sharpness)
+            height={200}
+            decoding="async"
+            className="h-14 md:h-16 lg:h-[72px] w-auto object-contain"
+          />
         </NavLink>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex bg-white rounded-full p-2 pt-4 pb-4 items-center">
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex bg-white rounded-full py-4 px-2 items-center">
           <ul className="flex items-center space-x-1">
             {navItems.map((item) => (
               <li key={item.name}>
                 <NavLink
                   to={item.href}
-                  className={({ isActive }) =>
-                    `${desktopBase} ${isActive ? activeLinkClasses : desktopInactive}`
-                  }
+                  className={({ isActive }) => `${desktopBase} ${isActive ? activeLinkClasses : desktopInactive}`}
                 >
                   {item.name}
                 </NavLink>
@@ -68,7 +66,7 @@ const Header = React.forwardRef((props, ref) => {
           </ul>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile toggle */}
         <div className="lg:hidden">
           <button
             onClick={toggleMenu}
@@ -80,18 +78,16 @@ const Header = React.forwardRef((props, ref) => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile dropdown */}
       {isOpen && (
-        <nav className="lg:hidden bg-zinc-900/95">
+        <nav className="lg:hidden bg-zinc-900/95 w-full">
           <ul className="flex flex-col items-center p-4 space-y-2">
             {navItems.map((item) => (
               <li key={item.name} className="w-full text-center">
                 <NavLink
                   to={item.href}
-                  onClick={toggleMenu} // Close menu on click
-                  className={({ isActive }) =>
-                    `${mobileBase} ${isActive ? activeLinkClasses : mobileInactive}`
-                  }
+                  onClick={toggleMenu}
+                  className={({ isActive }) => `${mobileBase} ${isActive ? activeLinkClasses : mobileInactive}`}
                 >
                   {item.name}
                 </NavLink>
