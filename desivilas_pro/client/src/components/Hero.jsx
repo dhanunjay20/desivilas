@@ -85,16 +85,6 @@ export default function Hero() {
             />
           </motion.div>
 
-          {/* Stats row */}
-          <motion.ul
-            variants={fadeUp}
-            custom={4}
-            className="mt-10 flex flex-wrap items-center justify-center gap-6 text-white/80 lg:justify-start"
-          >
-            <li className="flex items-center gap-2"><span className="text-2xl font-bold">10+</span><span className="text-sm">Years</span></li>
-            <li className="flex items-center gap-2"><span className="text-2xl font-bold">5k+</span><span className="text-sm">Reviews</span></li>
-            <li className="flex items-center gap-2"><span className="text-2xl font-bold">100%</span><span className="text-sm">Fresh</span></li>
-          </motion.ul>
         </motion.div>
 
         {/* Right: frosted glass card + floating chips */}

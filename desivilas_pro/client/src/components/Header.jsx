@@ -17,11 +17,20 @@ const Header = React.forwardRef((props, ref) => {
     { name: 'order online', href: '/order' },
   ];
 
-  const activeLinkClasses = 'text-orange-500';
-  const desktopBase = 'px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors duration-300';
-  const desktopInactive = 'text-black hover:text-green-500';
-  const mobileBase = 'block py-3 text-lg';
-  const mobileInactive = 'text-neutral-300 hover:text-green-500';
+  // Active: underline + color
+  const activeLinkClasses =
+    'text-orange-600 underline decoration-2 decoration-orange-500 underline-offset-8'; // active underline styling [web:931][web:930]
+
+  // Desktop base + hover: underline with offset and color
+  const desktopBase =
+    'px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors duration-300'; // shared base styling [web:919]
+  const desktopInactive =
+    'text-black hover:text-orange-600 hover:underline hover:decoration-orange-400 hover:underline-offset-8'; // hover underline [web:931][web:930]
+
+  // Mobile base + hover: underline with offset and color
+  const mobileBase = 'block py-3 text-lg transition-colors'; // mobile base [web:919]
+  const mobileInactive =
+    'text-neutral-300 hover:text-orange-400 hover:underline hover:decoration-orange-300 hover:underline-offset-8'; // hover underline [web:931][web:930]
 
   return (
     <header
@@ -35,7 +44,7 @@ const Header = React.forwardRef((props, ref) => {
           <img
             src={logo}
             alt="Desi Vilas"
-            width={200}             // intrinsic dimensions (2x helps retina sharpness)
+            width={200}
             height={200}
             decoding="async"
             className="h-14 md:h-16 lg:h-[72px] w-auto object-contain"
@@ -49,7 +58,9 @@ const Header = React.forwardRef((props, ref) => {
               <li key={item.name}>
                 <NavLink
                   to={item.href}
-                  className={({ isActive }) => `${desktopBase} ${isActive ? activeLinkClasses : desktopInactive}`}
+                  className={({ isActive }) =>
+                    `${desktopBase} ${isActive ? activeLinkClasses : desktopInactive}`
+                  }
                 >
                   {item.name}
                 </NavLink>
@@ -87,7 +98,9 @@ const Header = React.forwardRef((props, ref) => {
                 <NavLink
                   to={item.href}
                   onClick={toggleMenu}
-                  className={({ isActive }) => `${mobileBase} ${isActive ? activeLinkClasses : mobileInactive}`}
+                  className={({ isActive }) =>
+                    `${mobileBase} ${isActive ? activeLinkClasses : mobileInactive}`
+                  }
                 >
                   {item.name}
                 </NavLink>

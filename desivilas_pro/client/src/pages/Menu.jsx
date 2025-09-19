@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
 
-// Hero image
-const HERO_IMG =
-  'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2400&auto=format&fit=crop';
+// Animated background (ShaderGradient) — using the exact URL provided
+const SHADER_URL =
+  'https://www.shadergradient.co/customize?animate=on&axesHelper=off&bgColor1=%23000000&bgColor2=%23000000&brightness=1.2&cAzimuthAngle=180&cDistance=2.9&cPolarAngle=120&cameraZoom=1&color1=%23ebedff&color2=%23f3f2f8&color3=%23dbf8ff&destination=onCanvas&embedMode=off&envPreset=city&format=gif&fov=45&frameRate=10&gizmoHelper=hide&grain=off&lightType=3d&pixelDensity=1&positionX=0&positionY=1.8&positionZ=0&range=enabled&rangeEnd=40&rangeStart=0&reflection=0.1&rotationX=0&rotationY=0&rotationZ=-90&shader=defaults&type=waterPlane&uDensity=1&uFrequency=5.5&uSpeed=0.3&uStrength=3&uTime=0.2&wireframe=false&zoomOut=false';
 
-// Data (unchanged, includes all dishes)
+// Data (unchanged)
 const menuData = [
+  // ... keep your existing categories and items here exactly ...
   {
     category: 'Appetizers',
     url: 'https://www.desivilas.com/order#categoryHeading-1187268',
@@ -177,9 +179,18 @@ const menuData = [
 ];
 
 /* Variants */
-const sectionFade = { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
-const listContainer = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.12 } } };
-const listItem = { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 120 } } };
+const sectionFade = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+const listContainer = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.12 } },
+};
+const listItem = {
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 120 } },
+};
 
 /* Smooth scroll helper respecting sticky headers */
 function scrollIntoViewWithOffset(el, offset = 90) {
@@ -205,20 +216,18 @@ export default function MenuPage() {
   const toggleCategory = (cat) => setExpanded((prev) => (prev === cat ? null : cat));
 
   return (
-    <main className="relative min-h-screen w-full max-w-[100vw] overflow-x-clip bg-gray-50">
-      {/* Hero (clip to forbid x-overflow from absolute layers) */}
-      <section className="relative h-[42vh] sm:h-[50vh] lg:h-[58vh] overflow-hidden overflow-x-clip">
-        <picture>
-          <img
-            src={HERO_IMG}
-            alt=""
-            fetchpriority="high"
-            loading="eager"
-            decoding="async"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </picture>
-        <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+    <main className="relative min-h-screen w-full max-w-[100vw] overflow-x-clip">
+      {/* Global animated background (behind everything) */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <ShaderGradientCanvas style={{ width: '100%', height: '100%' }}>
+          <ShaderGradient control="query" urlString={SHADER_URL} />
+        </ShaderGradientCanvas>
+      </div>
+
+      {/* Hero — simplified to let the shader show through */}
+      <section className="relative h-[42vh] sm:h-[50vh] lg:h-[58vh] overflow-hidden">
+        {/* Soft dark veil for text legibility */}
+        <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
         <motion.div
           variants={sectionFade}
           initial="hidden"
@@ -226,51 +235,59 @@ export default function MenuPage() {
           viewport={{ once: true, amount: 0.6 }}
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
-          <p className="font-semibold text-orange-400">Fresh • Authentic • Crafted</p>
-          <h1 className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white" style={{ fontFamily: 'serif' }}>
+          <p className="font-semibold text-orange-200">Fresh • Authentic • Crafted</p>
+          <h1
+            className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white"
+            style={{ fontFamily: 'serif' }}
+          >
             Our Menu
           </h1>
-          <p className="mt-3 max-w-2xl text-white/85">
+          <p className="mt-3 max-w-2xl text-white/90">
             Explore every category—from breakfast classics and street‑style snacks to biryanis, dosas, and rich curries.
           </p>
         </motion.div>
       </section>
 
-      {/* Menu (clip section to contain any horizontal transforms) */}
-      <section className="relative overflow-x-clip mx-auto max-w-5xl px-6 md:px-10 lg:px-12 py-12">
+      {/* Menu */}
+      <section className="relative mx-auto max-w-5xl px-6 md:px-10 lg:px-12 py-12">
         {menuData.map(({ category, items, url, description }) => {
           const isOpen = expanded === category;
           const panelId = `section-${category.replace(/\s+/g, '-')}`;
           const btnId = `btn-${category.replace(/\s+/g, '-')}`;
 
           return (
-            <article
+            <motion.article
               key={category}
               ref={(el) => (itemRefs.current[category] = el)}
-              className="mb-6 rounded-3xl bg-white shadow-md ring-1 ring-black/5 scroll-mt-28"
+              variants={sectionFade}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+              className="mb-6 rounded-3xl bg-white/70 backdrop-blur-md ring-1 ring-black/5 shadow-xl"
             >
               <button
                 id={btnId}
                 onClick={() => toggleCategory(category)}
-                className="flex w-full items-center justify-between px-6 sm:px-8 py-5 sm:py-6 text-left"
+                className="group flex w-full items-center justify-between px-6 sm:px-8 py-5 sm:py-6 text-left"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-orange-600 font-bold">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-orange-600 font-bold ring-1 ring-orange-200">
                     {category.charAt(0)}
                   </span>
+                  {/* underline removed; tasteful hover color only */}
                   <a
                     href={url}
                     target="_blank"
                     rel="noreferrer"
-                    className="truncate text-2xl sm:text-3xl font-semibold text-orange-700 underline decoration-orange-300 underline-offset-4"
+                    className="truncate text-2xl sm:text-3xl font-semibold text-orange-700 hover:text-orange-800 transition-colors"
                     title={category}
                   >
                     {category}
                   </a>
                 </div>
-                <span className="ml-4 select-none text-3xl sm:text-4xl text-orange-500">
+                <span className="ml-4 select-none text-3xl sm:text-4xl text-orange-500 group-hover:scale-110 transition-transform">
                   {isOpen ? '−' : '+'}
                 </span>
               </button>
@@ -297,7 +314,7 @@ export default function MenuPage() {
                     >
                       {description && (
                         <motion.p
-                          className="mb-4 max-w-2xl text-sm italic text-gray-600"
+                          className="mb-4 max-w-2xl text-sm italic text-gray-700"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
@@ -306,12 +323,12 @@ export default function MenuPage() {
                         </motion.p>
                       )}
 
-                      <motion.ul className="divide-y divide-gray-200 rounded-2xl bg-white ring-1 ring-gray-100 overflow-hidden">
+                      <motion.ul className="divide-y divide-gray-200 rounded-2xl bg-white/80 backdrop-blur ring-1 ring-gray-100 overflow-hidden">
                         {items.map(({ name, description, image }, idx) => (
                           <motion.li
                             key={`${name}-${idx}`}
                             variants={listItem}
-                            className="flex flex-col items-start gap-4 p-4 sm:p-5 md:flex-row md:items-center"
+                            className="flex flex-col items-start gap-4 p-4 sm:p-5 md:flex-row md:items-center hover:bg-orange-50/60 transition-colors"
                           >
                             <img
                               src={image || 'https://via.placeholder.com/120?text=No+Image'}
@@ -333,7 +350,7 @@ export default function MenuPage() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </article>
+            </motion.article>
           );
         })}
       </section>

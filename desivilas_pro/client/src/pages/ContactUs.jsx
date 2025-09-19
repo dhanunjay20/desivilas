@@ -10,8 +10,9 @@ import {
   FiMapPin,
 } from 'react-icons/fi';
 
-import HERO_IMAGE from '../assets/contact_us.jpg'; // Adjust path to your actual asset
-// Prefer the official Maps Embed API format; replace YOUR_API_KEY and the q parameter
+import HERO_IMAGE from '../assets/contact_us.jpg';
+
+// Replace YOUR_API_KEY and q with your actual map location
 const MAP_EMBED_SRC =
   'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=London+Eye,London';
 
@@ -28,16 +29,12 @@ const scaleIn = {
 
 const container = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
-  },
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
 };
 
 const listContainer = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08 },
-  },
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
 const listItem = {
@@ -46,30 +43,52 @@ const listItem = {
 };
 
 const ContactUs = () => {
-  const [status, setStatus] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState({ ok: false, error: '', message: '' });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(data.entries());
-    console.log('Contact form submit:', payload);
-    setStatus('Message sent! (demo)');
+    setSubmitting(true);
+    setStatus({ ok: false, error: '', message: '' });
+
+    try {
+      const formEl = e.currentTarget;
+      const data = new FormData(formEl);
+
+      const res = await fetch('https://formspree.io/f/xzzanedq', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        setStatus({ ok: true, error: '', message: 'Thanks! Your message has been sent.' });
+        formEl.reset();
+      } else {
+        const json = await res.json().catch(() => ({}));
+        const msg = Array.isArray(json?.errors)
+          ? json.errors.map((er) => er.message).join(', ')
+          : 'Oops! There was a problem submitting your form.';
+        setStatus({ ok: false, error: msg, message: '' });
+      }
+    } catch {
+      setStatus({ ok: false, error: 'Network error. Please try again.', message: '' });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <main className="bg-[#F9F1E7] min-h-screen">
-      {/* Hero (base layer) */}
+    <main className="bg-[#F9F1E7] min-h-screen w-full max-w-[100vw] overflow-x-clip">
+      {/* Hero */}
       <section className="relative z-0 h-[38vh] md:h-[50vh] lg:h-[58vh] w-full overflow-hidden">
-        {/* Background image sits behind everything */}
         <img
           src={HERO_IMAGE}
           alt="Assorted dishes on a table"
           className="absolute inset-0 h-full w-full object-cover -z-10"
         />
-        {/* Dark overlay at base so following sections can render above */}
         <div className="absolute inset-0 bg-black/50 z-0" aria-hidden="true" />
 
-        {/* Hero content above overlay */}
         <div className="relative z-10 h-full flex flex-col items-start justify-center px-6 md:px-12">
           <motion.h1
             variants={fadeUp}
@@ -93,7 +112,7 @@ const ContactUs = () => {
         </div>
       </section>
 
-      {/* Map (pulled up with negative margin and forced above hero via z-index) */}
+      {/* Map */}
       <section className="mx-auto w-full max-w-7xl px-6 lg:px-8 -mt-12 md:-mt-16">
         <motion.div
           variants={scaleIn}
@@ -140,8 +159,7 @@ const ContactUs = () => {
               </motion.h2>
 
               <motion.p variants={fadeUp} className="mt-4 text-sm text-zinc-700 max-w-md">
-                Reach out anytime for questions, support, or feedback—our team is here to assist and
-                ensure the best experience possible.
+                Reach out anytime for questions, support, or feedback—our team is here to assist and ensure the best experience possible.
               </motion.p>
 
               <motion.div variants={listContainer} className="mt-8 space-y-6">
@@ -168,28 +186,13 @@ const ContactUs = () => {
                 <motion.div variants={listItem} className="pt-2">
                   <p className="text-xs uppercase tracking-wider text-zinc-500">Follow Us</p>
                   <motion.div variants={listContainer} className="mt-3 flex items-center gap-3 text-zinc-600">
-                    <motion.a
-                      variants={listItem}
-                      href="#"
-                      aria-label="Facebook"
-                      className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600"
-                    >
+                    <motion.a variants={listItem} href="#" aria-label="Facebook" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600">
                       <FiFacebook />
                     </motion.a>
-                    <motion.a
-                      variants={listItem}
-                      href="#"
-                      aria-label="Twitter"
-                      className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600"
-                    >
+                    <motion.a variants={listItem} href="#" aria-label="Twitter" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600">
                       <FiTwitter />
                     </motion.a>
-                    <motion.a
-                      variants={listItem}
-                      href="#"
-                      aria-label="Instagram"
-                      className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600"
-                    >
+                    <motion.a variants={listItem} href="#" aria-label="Instagram" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600">
                       <FiInstagram />
                     </motion.a>
                   </motion.div>
@@ -226,7 +229,7 @@ const ContactUs = () => {
             </motion.div>
           </aside>
 
-          {/* Right: Form */}
+          {/* Right: Form (Formspree) */}
           <div className="lg:col-span-3">
             <motion.div
               variants={scaleIn}
@@ -303,18 +306,23 @@ const ContactUs = () => {
                   />
                 </motion.div>
 
-                {status && (
-                  <motion.p variants={fadeUp} className="text-sm text-green-700">
-                    {status}
-                  </motion.p>
-                )}
+                {/* Status area (screen reader friendly) */}
+                <motion.p
+                  variants={fadeUp}
+                  aria-live="polite"
+                  className="text-sm"
+                >
+                  {status.ok && <span className="text-emerald-700">{status.message}</span>}
+                  {!status.ok && status.error && <span className="text-red-600">{status.error}</span>}
+                </motion.p>
 
                 <motion.div variants={listItem} className="pt-2">
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-green-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    disabled={submitting}
+                    className="w-full rounded-full bg-green-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-70"
                   >
-                    Send Message
+                    {submitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </motion.div>
               </motion.form>

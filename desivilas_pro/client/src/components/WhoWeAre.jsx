@@ -48,12 +48,6 @@ const slide = (dir = 'left', delay = 0) => ({
 });
 
 const WhoWeAre = () => {
-  const stats = [
-    { value: 10, label: 'Years Experience' },
-    { value: 50, label: 'Authentic Dishes' },
-    { value: 100, label: 'Spices & Herbs' },
-    { value: 10000, label: 'Happy Guests' },
-  ];
 
   return (
     <section className="bg-[#F9F1E7] py-20 lg:py-28 overflow-hidden">
@@ -153,39 +147,6 @@ const WhoWeAre = () => {
               </motion.button>
             </motion.div>
           </motion.div>
-        </div>
-
-        {/* Stats (alternate left/right + slide-up for numbers) */}
-        <div className="mt-28 lg:mt-36">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 sm:gap-x-8">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                variants={slide(i % 2 === 0 ? 'left' : 'right', 0)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.3 }}
-                className="flex flex-col items-center text-center"
-              >
-                {/* number slides up subtly */}
-                <motion.div variants={slide('up', 0.1)}>
-                  <StatsCounter targetValue={stat.value} />
-                </motion.div>
-
-                <motion.p
-                  variants={slide('up', 0.16)}
-                  className="mt-2 text-sm text-zinc-500 tracking-wide"
-                >
-                  {stat.label}
-                </motion.p>
-
-                <motion.div
-                  variants={slide('up', 0.22)}
-                  className="sm:hidden w-24 h-px bg-orange-200 mt-8"
-                />
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
