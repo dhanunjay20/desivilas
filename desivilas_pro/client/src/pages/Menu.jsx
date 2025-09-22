@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
 
+
 // Animated background (ShaderGradient) — using the exact URL provided
 const SHADER_URL =
   'https://www.shadergradient.co/customize?animate=on&axesHelper=off&bgColor1=%23000000&bgColor2=%23000000&brightness=1.2&cAzimuthAngle=180&cDistance=2.9&cPolarAngle=120&cameraZoom=1&color1=%23ebedff&color2=%23f3f2f8&color3=%23dbf8ff&destination=onCanvas&embedMode=off&envPreset=city&format=gif&fov=45&frameRate=10&gizmoHelper=hide&grain=off&lightType=3d&pixelDensity=1&positionX=0&positionY=1.8&positionZ=0&range=enabled&rangeEnd=40&rangeStart=0&reflection=0.1&rotationX=0&rotationY=0&rotationZ=-90&shader=defaults&type=waterPlane&uDensity=1&uFrequency=5.5&uSpeed=0.3&uStrength=3&uTime=0.2&wireframe=false&zoomOut=false';
@@ -13,9 +14,9 @@ const menuData = [
     category: 'Appetizers',
     url: 'https://www.desivilas.com/order#categoryHeading-1187268',
     items: [
-      { name: 'Gobi Manchurian', description: 'Crispy cauliflower florets tossed in tangy Manchurian sauce.', image: 'https://via.placeholder.com/120?text=Gobi+Manchurian' },
+      { name: 'Gobi Manchurian', description: 'Crispy cauliflower florets tossed in tangy Manchurian sauce.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758533150/gobi_machurian_hbbeme.jpg' },
       { name: 'Chicken 65', description: 'Spicy deep-fried chicken bites with curry leaves.', image: 'https://via.placeholder.com/120?text=Chicken+65' },
-      { name: 'Garlic Butter Chicken', description: 'Succulent chicken cooked in garlic butter sauce.', image: 'https://via.placeholder.com/120?text=Garlic+Butter+Chicken' },
+      { name: 'Garlic Butter Chicken', description: 'Succulent chicken cooked in garlic butter sauce.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758533285/garlic-butter-chicken_offqps.webp' },
       { name: 'Shrimp 65', description: 'Crispy fried shrimp spiced just right.', image: 'https://via.placeholder.com/120?text=Shrimp+65' },
       { name: 'Chilli Prawn', description: 'Prawns stir-fried with chillies and spices.', image: 'https://via.placeholder.com/120?text=Chilli+Prawn' },
     ],
