@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import Buttons from '../components/Buttons';
 
 const services = [
-  { title: 'Wedding Catering', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2200&auto=format&fit=crop', number: '01' },
-  { title: 'Corporate Events', image: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=2200&auto=format&fit=crop', number: '02' },
-  { title: 'Private Parties', image: 'https://images.unsplash.com/photo-1447078806655-40579c2520d6?q=80&w=2200&auto=format&fit=crop', number: '03' },
-  { title: 'Social Events', image: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=2200&auto=format&fit=crop', number: '04' },
+  { title: 'Catering Services', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758622255/Best_Catering_Services_in_Bhubaneswar_ippta5.jpg', number: '01' },
+  { title: 'Self Dine In', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758622360/download_50_a8gmfd.jpg', number: '02' },
+  { title: 'Flavours Ofthe Day', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758622436/Brownie_Ice_Cream_Pure_Bliss___Craving_the_perfect_dessert_combo__Dive_into_our_Ultimate_fnk74w.jpg', number: '03' },
+  { title: 'Social Events', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758622557/download_51_ezxllo.jpg', number: '04' },
 ];
 
 const fadeSection = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
