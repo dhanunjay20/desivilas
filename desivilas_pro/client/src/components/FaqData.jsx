@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Buttons from '../components/Buttons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import staff from '../assets/staff.jpg';
 
 const faqData = [
@@ -15,6 +16,7 @@ const AccordionItem = ({ id, item, isOpen, onToggle }) => {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm transition-all duration-300">
       <button
+        id={`btn-${id}`}
         aria-expanded={isOpen}
         aria-controls={`panel-${id}`}
         onClick={onToggle}
@@ -41,6 +43,7 @@ const AccordionItem = ({ id, item, isOpen, onToggle }) => {
 
 const FaqData = () => {
   const [openIndex, setOpenIndex] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <section className="bg-[#F9F1E7] py-20 lg:py-28">
@@ -49,6 +52,7 @@ const FaqData = () => {
           <h3 className="text-5xl font-bold text-zinc-900 leading-tight">
             Do you need –<br />some help?
           </h3>
+
           <div className="w-full h-80 rounded-2xl overflow-hidden shadow-lg">
             <img
               src={staff}
@@ -58,14 +62,16 @@ const FaqData = () => {
               decoding="async"
             />
           </div>
+
           <div className="bg-zinc-900 text-white p-8 rounded-2xl">
             <p className="text-lg font-semibold leading-relaxed mb-6">
-              Need more details? Contact our team 
+              Need more details? Contact our team
             </p>
+
             <Buttons
               label="Contact"
-              onPrimaryClick={() => console.log('Contact clicked')}
-              onArrowClick={() => console.log('Arrow clicked')}
+              onPrimaryClick={() => navigate('/contact')}
+              onArrowClick={() => navigate('/contact')}
               gap="gap-4"
             />
           </div>

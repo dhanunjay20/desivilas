@@ -106,7 +106,7 @@ const Services = () => {
 
       {/* Hero */}
       <section
-        className="relative w-full h-[32vh] md:h-[40vh] lg:h-[50vh] overflow-hidden bg-cover bg-center"
+        className="relative w-full h-[50vh] md:h-[60vh] lg:h-[50vh] overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url('https://res.cloudinary.com/djoq264q0/image/upload/v1758537488/paneer_biryani_1_1_nvgdho.jpg')` }} // replace with your image URL
       >
         <div className="absolute inset-0 bg-black/35" aria-hidden="true" />

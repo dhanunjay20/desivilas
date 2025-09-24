@@ -83,7 +83,7 @@ const ContactUs = () => {
   return (
     <main className="bg-[#F9F1E7] min-h-screen w-full max-w-[100vw] overflow-x-clip">
       {/* Hero */}
-      <section className="relative z-0 h-[38vh] md:h-[50vh] lg:h-[50vh] w-full overflow-hidden">
+      <section className="relative z-0 h-[50vh] md:h-[60vh] lg:h-[50vh] w-full overflow-hidden">
         <img
           src={HERO_IMAGE}
           alt="Assorted dishes on a table"

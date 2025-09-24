@@ -71,7 +71,7 @@ export default function MenuPage() {
       </div>
 
       {/* Hero with image above shader (but below text) */}
-      <section className="relative h-[42vh] sm:h-[50vh] lg:h-[50vh] overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] lg:h-[50vh] overflow-hidden">
         <img
           src={HERO_IMAGE}
           alt="Menu hero background"

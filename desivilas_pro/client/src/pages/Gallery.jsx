@@ -44,7 +44,7 @@ const Gallery = () => {
   return (
     <main className="bg-[#F9F1E7] min-h-screen w-full max-w-[100vw] overflow-x-clip">
       {/* Hero */}
-      <section className="relative h-[42vh] md:h-[56vh] lg:h-[50vh] w-full overflow-hidden">
+      <section className="relative h-[50vh] md:h-[60vh] lg:h-[50vh] w-full overflow-hidden">
         <img src={HERO_IMAGE} alt="Gallery hero" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
