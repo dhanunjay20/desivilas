@@ -99,9 +99,6 @@ const WhoWeAre = () => {
             viewport={{ once: true, amount: 0.35 }}
             className="relative text-center lg:text-left"
           >
-            <div className="absolute -bottom-10 -right-5 text-9xl font-bold text-gray-200/50 -z-10 hidden lg:block">
-              WhoWeAre
-            </div>
 
             <motion.div
               variants={slide('right', 0.05)}

@@ -26,7 +26,7 @@ const OurCateringServices = () => {
           </div>
           <h3 className="text-4xl lg:text-5xl font-bold text-white leading-tight">Our Catering Services</h3>
           <p className="mt-3 text-white/70 max-w-2xl mx-auto">
-            Bespoke experiences from intimate dinners to large social events — crafted by our expert chefs.
+            Bespoke experiences from intimate dinners to large social events crafted by our expert chefs.
           </p>
         </motion.div>
 

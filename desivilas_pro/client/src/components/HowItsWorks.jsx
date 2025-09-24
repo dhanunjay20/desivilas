@@ -9,10 +9,10 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
 const cardIn = { hidden: { opacity: 0, y: 28, scale: 0.98 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: 'easeOut' } } };
 
 const steps = [
-  { number: '01', title: 'Book Your Table', image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600&auto=format&fit=crop' },
-  { number: '02', title: 'Our Expert Chefs at Work', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1600&auto=format&fit=crop' },
+  { number: '01', title: 'Share Your Event Details', image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600&auto=format&fit=crop' },
+  { number: '02', title: 'Confirming The Order', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1600&auto=format&fit=crop' },
   { number: '03', title: 'Premium Quality Service', image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600&auto=format&fit=crop' },
-  { number: '04', title: 'An Unforgettable Experience', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop' },
+  { number: '04', title: 'Delivering to Your Doorstep', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop' },
 ];
 
 const HowItsWorks = () => {
