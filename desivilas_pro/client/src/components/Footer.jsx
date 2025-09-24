@@ -39,9 +39,9 @@ const Footer = () => {
                 className="h-14 md:h-16 w-auto object-contain"
               />
             </a>
-            <p className="text-gray-400"><a href="tel:+760947845254">+76 (094) 784 52 54</a></p>
-            <p className="text-gray-400"><a href="mailto:hello@desivilas.com">hello@desivilas.com</a></p>
-            <p className="text-gray-400">Canada, Toronto, Avenue 31B</p>
+            <p className="text-gray-400"><a href="tel:+760947845254">+1 (636) 415-8512</a></p>
+            <p className="text-gray-400"><a href="mailto:hello@desivilas.com">contact@desivilas.in</a></p>
+            <p className="text-gray-400">324 Harmony Meadows Ct Dardenne Prairie 63368</p>
           </div>
 
           <div>
@@ -63,9 +63,8 @@ const Footer = () => {
               </button>
             </form>
             <div className="flex justify-center md:justify-start gap-4 mt-6">
-              <a href="https://facebook.com" aria-label="Facebook" className="text-gray-400 hover:text-orange-500"><FaFacebookF /></a>
-              <a href="https://twitter.com" aria-label="Twitter" className="text-gray-400 hover:text-orange-500"><FaTwitter /></a>
-              <a href="https://instagram.com" aria-label="Instagram" className="text-gray-400 hover:text-orange-500"><FaInstagram /></a>
+              <a href="https://www.facebook.com/desi.vilas/" aria-label="Facebook" className="text-gray-400 hover:text-orange-500"><FaFacebookF /></a>
+              <a href="https://www.instagram.com/desi.vilas/" aria-label="Instagram" className="text-gray-400 hover:text-orange-500"><FaInstagram /></a>
             </div>
           </div>
         </div>
