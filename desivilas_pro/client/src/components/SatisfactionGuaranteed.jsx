@@ -42,10 +42,6 @@ const SatisfactionGuaranteed = () => {
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.6 }} className="mt-20 flex justify-center">
-          <Buttons label="Request a Quote" onPrimaryClick={() => {}} onArrowClick={() => {}} />
-        </motion.div>
       </div>
     </section>
   );

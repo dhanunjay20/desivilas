@@ -9,12 +9,13 @@ import {
   FiClock,
   FiMapPin,
 } from 'react-icons/fi';
+import GoogleReviewsWidget from 'google-reviews-widget';
 
 import HERO_IMAGE from '../assets/contact_us.jpg';
 
 // Replace YOUR_API_KEY and q with your actual map location
 const MAP_EMBED_SRC =
-  'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=London+Eye,London';
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d267.1381754847653!2d-90.76082801838604!3d38.76635851063549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87decfa6850c8e4f%3A0xf3ecb812f6ec917f!2sDesi%20Vilas!5e0!3m2!1sen!2sin!4v1758704468897!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade';
 
 /* Motion variants */
 const fadeUp = {
@@ -81,7 +82,7 @@ const ContactUs = () => {
   return (
     <main className="bg-[#F9F1E7] min-h-screen w-full max-w-[100vw] overflow-x-clip">
       {/* Hero */}
-      <section className="relative z-0 h-[38vh] md:h-[50vh] lg:h-[58vh] w-full overflow-hidden">
+      <section className="relative z-0 h-[38vh] md:h-[50vh] lg:h-[50vh] w-full overflow-hidden">
         <img
           src={HERO_IMAGE}
           alt="Assorted dishes on a table"
@@ -95,9 +96,7 @@ const ContactUs = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.5 }}
-            className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight"
-            style={{ fontFamily: 'serif' }}
-          >
+            className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
             Contact <span className="text-green-500">Us</span>
           </motion.h1>
           <motion.p
@@ -153,13 +152,12 @@ const ContactUs = () => {
               <motion.h2
                 variants={fadeUp}
                 className="text-3xl md:text-4xl font-extrabold text-zinc-900"
-                style={{ fontFamily: 'serif' }}
               >
                 Get in Touch
               </motion.h2>
 
               <motion.p variants={fadeUp} className="mt-4 text-sm text-zinc-700 max-w-md">
-                Reach out anytime for questions, support, or feedback—our team is here to assist and ensure the best experience possible.
+                Desi Vilas offers a delicious selection of authentic Indian cuisine, including lunch specials, flavorful rice dishes, and more. Whether you’re craving a quick meal or planning a special event, we provide convenient carryout and catering services to bring the rich taste of India to your table. Enjoy the vibrant flavour’s of India with every bite!
               </motion.p>
 
               <motion.div variants={listContainer} className="mt-8 space-y-6">
@@ -167,8 +165,8 @@ const ContactUs = () => {
                   <p className="text-xs uppercase tracking-wider text-zinc-500">For Booking</p>
                   <div className="mt-2 flex items-center gap-3 text-zinc-900">
                     <FiPhone className="text-green-600" />
-                    <a href="tel:+15646434345" className="hover:text-green-700">
-                      (564)-643-4345
+                    <a href="tel:+1 (636) 415-8512" className="hover:text-green-700">
+                      +1 (636) 415-8512
                     </a>
                   </div>
                 </motion.div>
@@ -178,7 +176,7 @@ const ContactUs = () => {
                   <div className="mt-2 flex items-center gap-3 text-zinc-900">
                     <FiMail className="text-green-600" />
                     <a href="mailto:info@eatflow.com" className="hover:text-green-700">
-                      info@eatflow.com
+                      contact@desivilas.com
                     </a>
                   </div>
                 </motion.div>
@@ -186,13 +184,10 @@ const ContactUs = () => {
                 <motion.div variants={listItem} className="pt-2">
                   <p className="text-xs uppercase tracking-wider text-zinc-500">Follow Us</p>
                   <motion.div variants={listContainer} className="mt-3 flex items-center gap-3 text-zinc-600">
-                    <motion.a variants={listItem} href="#" aria-label="Facebook" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600">
+                    <motion.a variants={listItem} href="https://www.facebook.com/desi.vilas/" aria-label="Facebook" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600" target='_blank'>
                       <FiFacebook />
                     </motion.a>
-                    <motion.a variants={listItem} href="#" aria-label="Twitter" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600">
-                      <FiTwitter />
-                    </motion.a>
-                    <motion.a variants={listItem} href="#" aria-label="Instagram" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600">
+                    <motion.a variants={listItem} href="https://www.instagram.com/desi.vilas/" aria-label="Instagram" className="p-2 rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:text-orange-600" target='_blank'>
                       <FiInstagram />
                     </motion.a>
                   </motion.div>
@@ -206,15 +201,23 @@ const ContactUs = () => {
                   <ul className="mt-4 space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-orange-400" />
-                      Mon – Fri: 7:00am – 6:00pm
+                      Mon – Closed
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-orange-400" />
-                      Sat: 7:00am – 6:00pm
+                      Tue – Thu : 11:00 AM - 2:00 PM, 4:00 PM - 9:30 PM
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-orange-400" />
-                      Sun: 8:00am – 6:00pm
+                      Fri : 11:00 AM – 10:00 PM
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-orange-400" />
+                      Sat : 9:30 AM – 10:00 PM
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-orange-400" />
+                      Sun : 9:30 AM – 9:30 PM
                     </li>
                   </ul>
                 </motion.div>
@@ -222,7 +225,7 @@ const ContactUs = () => {
                 <motion.div variants={listItem} className="mt-8 flex items-start gap-3 text-zinc-700">
                   <FiMapPin className="mt-1 text-green-600" />
                   <p className="text-sm">
-                    Riverside Building, County Hall, London SE1 7PB, United Kingdom
+                    324 Harmony Meadows Ct, Dardenne Prairie, MO 63368, USA
                   </p>
                 </motion.div>
               </motion.div>
@@ -329,6 +332,13 @@ const ContactUs = () => {
             </motion.div>
           </div>
         </div>
+        <div className="my-12 border-t border-zinc-200" />
+        <div className="w-full text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-900 mb-6">
+                 Customer Reviews
+            </h2>
+        </div>
+        <GoogleReviewsWidget instanceId="KBeWWdwWpxO7gHSAR56r" />
       </section>
     </main>
   );
