@@ -40,12 +40,12 @@ const MenuCard = ({ name, image, colIndex }) => {
 
 const PerfectMenu = () => {
   const menuCategories = [
-    { name: 'Beverages', image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1600&auto=format&fit=crop' },
-    { name: 'BBQ', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop' },
-    { name: 'Family Buffet', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop' },
-    { name: 'Appetizers', image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1600&auto=format&fit=crop' },
-    { name: 'Main Courses', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop' },
-    { name: 'Desserts', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1600&auto=format&fit=crop' },
+    { name: 'Beverages', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758618770/drink_inn2it.jpg' },
+    { name: 'Starters', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758618918/starters_mwh9jx.jpg' },
+    { name: 'Breakfast', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758619333/break_fast1_nmusof.jpg' },
+    { name: 'Naan', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758619054/NAAN_eq61im.jpg' },
+    { name: 'Curries', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758619108/CURRIES_mj0pbu.jpg' },
+    { name: 'Rice Special', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758619181/rices_iqgfpb.jpg' },
   ];
 
   return (
