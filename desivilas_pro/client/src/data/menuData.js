@@ -18,7 +18,7 @@ const menuData = [
       {
         name: 'Gobi Manchurian',
         description: 'Crispy cauliflower florets tossed in tangy Manchurian sauce.',
-        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758533150/gobi_machurian_hbbeme.jpg',
+        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758537885/gobi_manchurian_piwpeg.jpg',
         diet: 'veg',
         ingredients: ['Cauliflower', 'Cornflour', 'All‑purpose flour', 'Garlic', 'Ginger', 'Green chilli', 'Soy sauce', 'Vinegar', 'Spring onion', 'Oil', 'Salt'],
       },
@@ -32,7 +32,7 @@ const menuData = [
       {
         name: 'Garlic Butter Chicken',
         description: 'Succulent chicken cooked in garlic butter sauce.',
-        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758533285/garlic-butter-chicken_offqps.webp',
+        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758538464/garlic-butter-chicken_cy3phy.webp',
         diet: 'non-veg',
         ingredients: ['Boneless chicken', 'Butter', 'Garlic', 'Cream', 'Black pepper', 'Paprika', 'Parsley', 'Oil', 'Salt'],
       },
@@ -273,7 +273,7 @@ const menuData = [
       {
         name: 'Chicken Curry of the Day Full',
         description: 'Daily special chicken curry full portion.',
-        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758535308/chicken_Curry_full_ncujyw.jpg',
+        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758624002/chicken_Curry_full_1_evg0nv.jpg',
         diet: 'non-veg',
         ingredients: ['Chicken', 'Onion', 'Tomato', 'Ginger‑garlic paste', 'Chilli powder', 'Coriander powder', 'Garam masala', 'Oil', 'Salt'],
       },
@@ -471,13 +471,7 @@ const menuData = [
         diet: 'veg',
         ingredients: ['Maida', 'Potato', 'Peas', 'Spices', 'Oil', 'Salt'],
       },
-      {
-        name: 'Stuffed Mirchi Bajji (4)',
-        description: 'Stuffed chili fritters.',
-        image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758535158/stuffed_mirchii_baji_sr4ctm.jpg',
-        diet: 'veg',
-        ingredients: ['Green chillies', 'Besan', 'Rice flour', 'Stuffing (onion/peanut)', 'Ajwain', 'Oil', 'Salt'],
-      },
+     
       {
         name: 'Mirchi Bajji (4)',
         description: 'Crispy chili fritters.',

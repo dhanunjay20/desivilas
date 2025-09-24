@@ -9,9 +9,9 @@ import Buttons from '../components/Buttons';
 const SatisfactionGuaranteed = () => {
   const guarantees = [
     { Icon: GiCook, title: 'Master Chefs at Work', description: 'Experience Culinary Mastery with Expert Chefs Crafting Perfect Dishes for Every Occasion' },
-    { Icon: MdOutlineFoodBank, title: 'Delicious Food', description: 'Food connects us all—each bite brings joy, passion, and love, turning every new flavor into a priceless, soulful experience.!' },
+    { Icon: MdOutlineFoodBank, title: 'Delicious Food', description: 'Food connects us all each bite brings joy, passion, and love, turning every new flavor into a priceless, soulful experience.!' },
     { Icon: MdOutlineVerified, title: 'High Quality Service', description: 'We anticipate your needs and deliver flawless execution with meticulous attention to detail, every single time.' },
-    { Icon: IoRestaurantOutline, title: 'Flavors of the Day', description: 'A new flavor adventure awaits every day. Small batch, big taste, made just for today. Each creation is crafted with care, inspired by fresh ideas and bold ingredients. No repeats, no compromises — just a daily surprise worth savoring.' },
+    { Icon: IoRestaurantOutline, title: 'Flavors of the Day', description: 'A new flavor adventure every day. Small batch, bold taste crafted with care and fresh ideas. No repeats, just a daily surprise worth savoring.' },
     { Icon: GiFruitBowl, title: 'Sourced Ingredients', description: 'Premium, locally sourced ingredients for fresh, flavorful meals that nourish and delight every bite.' },
     { Icon: GiTakeMyMoney, title: 'Fits Your Budget', description: 'Affordable solutions that perfectly align with your budget, providing value without compromising on quality.' },
   ];

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../components/Buttons';
+import { FiFeather } from 'react-icons/fi';
 
 // Brand colors
 const ORANGE = '#E1783C';
@@ -63,7 +64,10 @@ const OurCateringServices = () => {
   return (
     <section className="w-full" style={{ backgroundColor: BG }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-        {/* Desktop row with expandable cards, perfectly centered */}
+          <div className="flex justify-center items-center gap-2 text-orange-500 mb-4">
+            <FiFeather /><h2 className="font-semibold text-sm">Our Services</h2><FiFeather />
+          </div>
+          <h2 className="text-5xl font-bold text-white text-center mb-12">Our Catering Services</h2>
         <div
           className="hidden md:flex h-[600px] items-stretch gap-5 justify-center"
           onMouseLeave={() => setActive(0)}
