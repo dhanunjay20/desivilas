@@ -18,6 +18,9 @@ import Gallery from './pages/Gallery';
 import OrderOnline from './pages/OrderOnline';
 import Contact from './pages/ContactUs';
 
+// New: floating WhatsApp button
+import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
+
 const App = () => {
   // Header height -> pad main so content doesn't hide behind fixed header
   const headerRef = useRef(null);
@@ -56,8 +59,9 @@ const App = () => {
           </Routes>
         </main>
 
-        {/* Orange back-to-top button available on all pages */}
+        {/* Floating UI */}
         <BackToTop threshold={400} />
+        <FloatingWhatsAppButton />
 
         <Footer />
       </div>

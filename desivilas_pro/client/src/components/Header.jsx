@@ -14,7 +14,7 @@ const Header = React.forwardRef((props, ref) => {
     { name: 'about us', href: '/about' },
     { name: 'services', href: '/services' },
     { name: 'gallery', href: '/gallery' },
-    { name: 'order online', href: '/order' },
+    { name: 'order', href: '/order' },
   ];
 
   // Active: underline + color
