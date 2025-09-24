@@ -71,7 +71,7 @@ const menuData = [
       { name: 'Sambar Full', description: 'Full portion of sambar.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758534560/Sambar_full_vlja6v.jpg' },
       { name: 'Paneer Tikka Masala or Paneer Butter Masala Half (12OZ)', description: 'Half portion rich paneer curry.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758537488/paneer_biryani_1_1_nvgdho.jpg' },
       { name: 'Chicken Curry of the Day Half', description: 'Daily special chicken curry half portion.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758538753/chicken_curry_half_ydo00j.jpg' },
-      { name: 'Chicken Curry of the Day Full', description: 'Daily special chicken curry full portion.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758535308/chicken_Curry_full_ncujyw.jpg' },
+      { name: 'Chicken Curry of the Day Full', description: 'Daily special chicken curry full portion.', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758624002/chicken_Curry_full_1_evg0nv.jpg' },
     ],
   },
   {
