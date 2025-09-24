@@ -86,7 +86,7 @@ const WhoWeAre = () => {
               className="absolute -bottom-10 right-0 w-48 h-48 bg-orange-500 rounded-full flex items-center justify-center p-5 text-center shadow-xl"
             >
               <p className="text-white font-semibold text-lg leading-tight">
-                Perfectly Curated to Delight Your Senses
+                Perfectly Curated to Suit Your Event.
               </p>
             </motion.div>
           </motion.div>
@@ -113,14 +113,18 @@ const WhoWeAre = () => {
               variants={slide('right', 0.1)}
               className="text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight"
             >
-              Delivering Unforgettable Flavors for Every Occasion
+              Experience the Essence of India
             </motion.h3>
 
             <motion.p
               variants={slide('right', 0.16)}
               className="mt-6 text-zinc-600 leading-relaxed"
             >
-              Discover the heart of authentic Indian cuisine at Desi Vilas. From elegant dinners to casual gatherings, we craft bespoke menus and deliver a seamless dining experience. Trust us to create unforgettable culinary journeys, ensuring every detail is perfectly executed.
+              At Desi Vilas, we are storytellers through food — blending tradition, culture, and flavor into every dish we serve. Rooted in the vibrant culinary heritage of India, our restaurant is a warm, welcoming space where authentic recipes meet modern hospitality.<br/><br/>
+
+ 
+
+Whether you’re savoring a comforting curry, enjoying our daily-special surprises, or planning a festive gathering with our catering team — Desi Vilas is where every meal feels like home, no matter how far from home you are.
             </motion.p>
 
             <motion.div

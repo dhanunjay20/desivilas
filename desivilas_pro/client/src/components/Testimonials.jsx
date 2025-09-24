@@ -7,32 +7,45 @@ const testimonials = [
     name: 'Michael Ross',
     role: 'Corporate Manager',
     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=2787&auto=format&fit=crop',
-    text: "The catering service was beyond exceptional! The food was beautifully presented and tasted amazing. The team was professional, attentive, and ensured everything went smoothly. Our guests couldn’t stop raving about the experience. Highly recommend for any event."
+    text: "We catered vegetarian items from Desi Vilas for a religious event. Food was delivered on time and delicious. Our guests were very happy. Most of the items were very closer as if they were made in home. We will be ordering more in the future for sure. Thank you DesiVilas."
   },
   {
     name: 'Jessica Pearson',
     role: 'Event Organizer',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop',
-    text: "From start to finish, the service was impeccable. The culinary team's creativity and attention to detail made our annual gala a massive success. The flavors were simply divine."
+    text: "I had a heart felt meal at lunch last week. I got the combo with Coconut Chicken Curry and Baby Corn 65 with Flavored Rice for lunch, both sides are exceptionally good. Subtle and yet vibrant flavors. I think I just found my new go to place for quick lunches.The facility is clean and concise."
   },
   {
     name: 'Harvey Specter',
     role: 'Business Owner',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop',
-    text: "Reliable, high-quality, and utterly delicious. Desi Vilas is our go-to for all corporate functions. They never fail to impress our clients and partners."
+    text: "Excellent Indian restaurant that offers several options. The lunch special is a pick two with different curries/entrees and comes with rice and a piece of naan. It’s an excellent value for the amount you get and service is always fast. It’s so nice that we have this convenient option now in the area."
   },
   {
     name: 'Donna Paulsen',
     role: 'Office Manager',
     image: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=2787&auto=format&fit=crop',
-    text: "The best part about working with them is the peace of mind. I know everything will be handled perfectly, from the food to the service. It makes my job so much easier."
+    text: "We recently had our event catered, and their exceptional service and delicious food made our party truly special.The recommended menu featured a variety of starters and welcome drinks, all of which were delightful. The presentation was impressive, and each dish was expertly prepared and full of flavor. "
   },
   {
     name: 'Louis Litt',
     role: 'Food Blogger',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2787&auto=format&fit=crop',
-    text: "A truly authentic experience. The blend of spices and the freshness of the ingredients speak volumes about their commitment to quality. A must-try for any connoisseur."
+    text: "A really nice place to enjoy regional and North Indian cuisines with friends and family. The place is clean and staffs are attentive. Their non-vegetarian selections are delicious and they have provided every dish with a twist of their own. I loved chicken, fish, mutton and sea food starters. One must go here for a unique experience with food."
   },
+  {
+    name: 'Louis Litt',
+    role: 'Food Blogger',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2787&auto=format&fit=crop',
+    text: "Chanced upon this place and what a find it was! Spacious, swing seating, welcoming staff. Food was flavourful, service was excellent. The staff is very helpful. The view was great. We had gone for a late lunch so many seats were vacant. It proved to be a relaxed lunch. They have a big screen on which latest chartbusters were playing. We are definitely trying it again."
+  },
+  {
+    name: 'Louis Litt',
+    role: 'Food Blogger',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2787&auto=format&fit=crop',
+    text: "Really there is so tasty food and there ambience is so good also service person's is very knowledgeable and so friendly"
+  },
+
 ];
 
 const Testimonials = () => {

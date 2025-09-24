@@ -2,12 +2,13 @@ import React from 'react';
 import { FiFeather } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import Buttons from '../components/Buttons';
-import chefs from '../assets/chefs.png';
+
+
 
 const teamMembers = [
-  { name: 'Alexandra Hayes', role: 'Head Chef', image: chefs, bgColor: '#6CC070', shapePath: 'M20,10 L80,10 L90,25 L90,40 L98,50 L90,60 L90,75 L80,90 L20,90 L10,75 L10,60 L2,50 L10,40 L10,25 Z' },
-  { name: 'Olivia Martin', role: 'Event Planner', image: chefs, bgColor: '#FF8748', shapePath: 'M10,15 L50,2 L90,15 L95,50 L90,85 L50,98 L10,85 L5,50 Z' },
-  { name: 'Liam Thompson', role: 'Service Manager', image: chefs, bgColor: '#FFC247', shapePath: 'M20,10 L80,10 L90,25 L90,40 L98,50 L90,60 L90,75 L80,90 L20,90 L10,75 L10,60 L2,50 L10,40 L10,25 Z' },
+  { name: 'Alexandra Hayes', role: 'Head Chef', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758626394/chef_dvptn9.png', bgColor: '#6CC070', shapePath: 'M20,10 L80,10 L90,25 L90,40 L98,50 L90,60 L90,75 L80,90 L20,90 L10,75 L10,60 L2,50 L10,40 L10,25 Z' },
+  { name: 'Olivia Martin', role: 'Event Planner', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758626402/chef_1_fflg50.png', bgColor: '#FF8748', shapePath: 'M10,15 L50,2 L90,15 L95,50 L90,85 L50,98 L10,85 L5,50 Z' },
+  { name: 'Liam Thompson', role: 'Service Manager', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758626397/chef_2_hsl16d.png',bgColor: '#FFC247', shapePath: 'M20,10 L80,10 L90,25 L90,40 L98,50 L90,60 L90,75 L80,90 L20,90 L10,75 L10,60 L2,50 L10,40 L10,25 Z'}
 ];
 
 const cardVariants = {
@@ -37,7 +38,7 @@ const MeetTheTeam = () => {
         <div className="flex justify-center items-center gap-2 text-orange-500 mb-4">
           <FiFeather /><h2 className="font-semibold text-sm">Why Desi Vilas</h2><FiFeather />
         </div>
-        <h3 className="text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight" style={{ fontFamily: 'serif' }}>Satisfaction Guaranteed</h3>
+        <h3 className="text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight" style={{ fontFamily: 'serif' }}>Meet The Team</h3>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((m, index) => (

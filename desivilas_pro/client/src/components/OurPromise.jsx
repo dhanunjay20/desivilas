@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const CARDS = [
   { title: 'Our Vision', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop', alt: 'Chef plating a dish', text: 'To be the ultimate destination for food lovers, where every meal is a memorable experience.' },
-  { title: 'Our Mission', image: 'https://images.unsplash.com/photo-1506368083636-6defb67639c5?q=80&w=1600&auto=format&fit=crop', alt: 'Chef preparing roast with sides', text: 'To combine culinary creativity, authentic flavors, and best service, making every dining experience special.' },
+  { title: 'Our Mission', image: 'https://res.cloudinary.com/djoq264q0/image/upload/v1758618244/Serives_food1_p4u0ya.jpg', alt: 'Chef preparing roast with sides', text: 'To combine culinary creativity, authentic flavors, and best service, making every dining experience special.' },
   { title: 'Our Brand Promise', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop', alt: 'Server carrying plated appetizers', text: 'Consistently delivering fresh, flavorful, and memorable meals with exceptional service and attention to detail.' },
 ];
 
