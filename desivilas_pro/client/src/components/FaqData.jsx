@@ -4,12 +4,11 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 import staff from '../assets/staff.jpg';
 
 const faqData = [
-  { question: 'What types of events do you cater to?', answer: 'We cater to a wide range of events, including weddings, corporate gatherings, private parties, birthdays, anniversaries, and other special occasions. Our services are customized to meet your event’s specific needs.' },
-  { question: 'Can you handle dietary restrictions?', answer: 'Yes, our culinary team is experienced in handling a variety of dietary needs, including vegetarian, vegan, gluten-free, and common allergies. Please let us know your requirements in advance.' },
-  { question: 'Do you provide both food and beverage services?', answer: 'Absolutely. We offer comprehensive catering packages that can include a full range of beverages, from soft drinks to full bar service, tailored to your event.' },
-  { question: 'Is there a minimum guest count?', answer: 'We can cater to events of all sizes. While some menu items or packages may have minimums, we are flexible and can work with you to find the perfect solution for your gathering.' },
-  { question: 'Do you provide event setup and cleanup?', answer: 'Yes, our standard service includes the complete setup of the food service area and a thorough cleanup afterward, allowing you to enjoy your event without worry.' },
-  { question: 'Can I customize the menu for my event?', answer: 'Of course. Customization is our specialty. We will work with you to create a bespoke menu that perfectly fits the theme and taste of your event.' },
+  { question: 'What Types of Events Do We Cater To?', answer: 'We transform your vision into an unforgettable reality. Whether crafting an intimate celebration or executing a large-scale corporate event, we master the details to deliver a perfectly personalized experience.' },
+  { question: 'Do you provide both food and beverage services?', answer: 'We expertly plan and execute a diverse array of events. Our comprehensive services are fully customizable to perfectly align with your specific goals and requirements.' },
+  { question: 'Do you have a minimum guest count?', answer: 'We are happy to cater events of any size; no minimum number is required.' },
+  { question: 'Do you provide event setup?', answer: 'We do. Our comprehensive event setup service is designed to bring your vision to life for a wide range of occasions, including weddings, corporate gatherings, private parties, and birthdays. We handle the details so you can focus on enjoying your event.' },
+  { question: 'Do you offer customize menu options?', answer: 'Yes, we specialize in fully customized menus. Whether you are planning a private party or a large corporate gathering, we work with you to create a culinary experience that perfectly matches your vision and delights your guests.' },
 ];
 
 const AccordionItem = ({ id, item, isOpen, onToggle }) => {
@@ -61,7 +60,7 @@ const FaqData = () => {
           </div>
           <div className="bg-zinc-900 text-white p-8 rounded-2xl">
             <p className="text-lg font-semibold leading-relaxed mb-6">
-              Need more details? Contact our team for personalized catering assistance.
+              Need more details? Contact our team 
             </p>
             <Buttons
               label="Contact"
