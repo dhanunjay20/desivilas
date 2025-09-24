@@ -47,7 +47,7 @@ const FaqData = () => {
     <section className="bg-[#F9F1E7] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
         <div className="flex flex-col gap-8">
-          <h3 className="text-5xl font-bold text-zinc-900 leading-tight" style={{ fontFamily: 'serif' }}>
+          <h3 className="text-5xl font-bold text-zinc-900 leading-tight">
             Do you need –<br />some help?
           </h3>
           <div className="w-full h-80 rounded-2xl overflow-hidden shadow-lg">

@@ -71,7 +71,7 @@ export default function MenuPage() {
       </div>
 
       {/* Hero with image above shader (but below text) */}
-      <section className="relative h-[42vh] sm:h-[50vh] lg:h-[58vh] overflow-hidden">
+      <section className="relative h-[42vh] sm:h-[50vh] lg:h-[50vh] overflow-hidden">
         <img
           src={HERO_IMAGE}
           alt="Menu hero background"
@@ -88,11 +88,11 @@ export default function MenuPage() {
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
           <p className="font-semibold text-orange-200">Fresh • Authentic • Crafted</p>
-          <h1 className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white" style={{ fontFamily: 'serif' }}>
+          <h1 className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
             Our Menu
           </h1>
           <p className="mt-3 max-w-2xl text-white/90">
-            Explore every category—from breakfast classics and street‑style snacks to biryanis, dosas, and rich curries.
+            Explore every category from breakfast classics and street style snacks to biryanis, dosas, and rich curries.
           </p>
         </motion.div>
       </section>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import logo from '../assets/desivilas_logo.png';
 
 const Footer = () => {
@@ -33,15 +34,21 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Desi Vilas"
-                width={200}                  // intrinsic size to reserve space (reduces CLS)
+                width={200}                   // intrinsic size to reserve space (reduces CLS)
                 height={200}
                 decoding="async"
                 className="h-14 md:h-16 w-auto object-contain"
               />
             </a>
-            <p className="text-gray-400"><a href="tel:+760947845254">+1 (636) 415-8512</a></p>
-            <p className="text-gray-400"><a href="mailto:hello@desivilas.com">contact@desivilas.in</a></p>
-            <p className="text-gray-400">324 Harmony Meadows Ct Dardenne Prairie 63368</p>
+            <p className="text-gray-400 flex items-center gap-2">
+              <FiPhone className='text-orange-500' /> <a href="tel:+760947845254">+1 (636) 415-8512</a>
+            </p>
+            <p className="text-gray-400 flex items-center gap-2">
+              <FiMail className='text-orange-500' /> <a href="mailto:hello@desivilas.com">contact@desivilas.in</a>
+            </p>
+            <p className="text-gray-400 flex items-center gap-2">
+              <FiMapPin className='text-orange-500' /> 324 Harmony Meadows Ct Dardenne Prairie 63368, USA
+            </p>
           </div>
 
           <div>
@@ -63,8 +70,8 @@ const Footer = () => {
               </button>
             </form>
             <div className="flex justify-center md:justify-start gap-4 mt-6">
-              <a href="https://www.facebook.com/desi.vilas/" aria-label="Facebook" className="text-gray-400 hover:text-orange-500"><FaFacebookF /></a>
-              <a href="https://www.instagram.com/desi.vilas/" aria-label="Instagram" className="text-gray-400 hover:text-orange-500"><FaInstagram /></a>
+              <a href="https://www.facebook.com/desi.vilas/" aria-label="Facebook" className="text-gray-400 hover:text-orange-500" target='_blank'><FaFacebookF /></a>
+              <a href="https://www.instagram.com/desi.vilas/" aria-label="Instagram" className="text-gray-400 hover:text-orange-500" target='_blank'><FaInstagram /></a>
             </div>
           </div>
         </div>

@@ -105,29 +105,45 @@ const Services = () => {
       </div>
 
       {/* Hero */}
-      <section className="relative w-full h-[32vh] md:h-[40vh] lg:h-[46vh] overflow-hidden">
+      <section
+        className="relative w-full h-[32vh] md:h-[40vh] lg:h-[50vh] overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: `url('https://res.cloudinary.com/djoq264q0/image/upload/v1758537488/paneer_biryani_1_1_nvgdho.jpg')` }} // replace with your image URL
+      >
         <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight"
+        <div className="relative z-10 flex flex-col items-center justify-center h-full max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight"
+          >
+            Services &amp; Menu
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: 'easeOut' }}
+            className="mt-3 text-white/90 max-w-xl"
+          >
+            Explore categories, then send a catering request with event details below.
+          </motion.p>
+            <button
+              onClick={() => {
+                const formSection = document.getElementById('catering-form');
+                if (formSection) {
+                  const offset = 80; // header height or desired offset
+                  const top = formSection.getBoundingClientRect().top + window.pageYOffset - offset;
+                  window.scrollTo({ top, behavior: 'smooth' });
+                }
+              }}
+              className="mt-6 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-semibold transition"
             >
-              Services & Menu
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: 'easeOut' }}
-              className="mt-3 text-white/85 max-w-2xl"
-            >
-              Explore categories, then send a catering request with event details below.
-            </motion.p>
-          </div>
+              Inquire Now
+            </button>
+            
         </div>
       </section>
+          
 
       {/* Tools */}
       <motion.section
@@ -257,7 +273,7 @@ const Services = () => {
         viewport={{ once: true, amount: 0.2 }}
         className="bg-white/70 backdrop-blur"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+        <div id='catering-form' className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
           <div className="max-w-3xl">
             <h2 className="text-2xl md:text-3xl font-extrabold text-zinc-900">Request Catering</h2>
             <p className="mt-2 text-zinc-600">

@@ -1,8 +1,6 @@
 import React from 'react';
 import { FiFeather } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-// If needed elsewhere on the page, the shared buttons are still available:
-// import { AboutPill, ArrowCircle } from '../components/Buttons';
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
@@ -34,17 +32,17 @@ const HowItsWorks = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.35 }}
-          className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20 overflow-x-clip"
+          className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16 overflow-x-clip" // adjusted gaps
         >
           {steps.map((step) => (
             <motion.div key={step.number} variants={cardIn} className="relative group">
               <motion.div
                 whileHover={{ y: -64 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-                className="relative h-80 rounded-3xl bg-zinc-900 p-6 text-left text-white shadow-lg"
+                className="relative h-80 rounded-3xl bg-zinc-900 p-8 text-left text-white shadow-lg" // increased padding
               >
-                <div className="flex w-full items-start justify-between">
-                  <div className="h-24 w-24 overflow-hidden rounded-2xl">
+                <div className="flex w-full items-start justify-between gap-4"> {/* added gap */}
+                  <div className="h-24 w-24 overflow-hidden rounded-2xl flex-shrink-0"> {/* flex shrink to keep size */}
                     <img
                       src={step.image}
                       alt={step.title}
@@ -53,9 +51,9 @@ const HowItsWorks = () => {
                       decoding="async"
                     />
                   </div>
-                  <span className="text-6xl font-bold text-zinc-700/50">{step.number}</span>
+                  <span className="text-6xl font-bold text-zinc-700/60 select-none">{step.number}</span> {/* larger and subtle */}
                 </div>
-                <h4 className="mt-4 text-2xl font-bold leading-tight">{step.title}</h4>
+                <h4 className="mt-6 text-2xl font-bold leading-tight">{step.title}</h4> {/* increased margin top */}
               </motion.div>
             </motion.div>
           ))}

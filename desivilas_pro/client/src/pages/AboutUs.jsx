@@ -13,7 +13,7 @@ const AboutUs = () => {
       {/* Hero Section (clip to prevent subpixel overflow) */}
       <section
         aria-labelledby="about-hero-title"
-        className="relative w-full max-w-[100vw] h-[48vh] md:h-[60vh] lg:h-[70vh] overflow-hidden overflow-x-clip"
+        className="relative w-full max-w-[100vw] h-[48vh] md:h-[60vh] lg:h-[50vh] overflow-hidden overflow-x-clip"
       >
         <img src={HERO_IMAGE} alt="About us hero" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
@@ -49,12 +49,6 @@ const AboutUs = () => {
         <PerfectMenu />
       </section>
 
-      {/* Testimonials (when enabled) should also be clipped */}
-      {/* <section className="relative w-full max-w-[100vw] overflow-x-clip"><Testimonials /></section> */}
-
-      <section className="relative w-full max-w-[100vw] overflow-x-clip">
-        <OurCateringServices />
-      </section>
     </main>
   );
 };

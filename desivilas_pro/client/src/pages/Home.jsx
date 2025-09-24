@@ -45,7 +45,6 @@ const Home = () => {
       </section>
 
       <section className="relative w-full max-w-[100vw] overflow-x-clip">
-        <MeetTheTeam />
         <FaqData />
       </section>
     </div>
