@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { FiFeather } from 'react-icons/fi';
 import {
   FiPhone,
   FiMail,
@@ -334,6 +335,9 @@ const ContactUs = () => {
         </div>
         <div className="my-12 border-t border-zinc-200" />
         <div className="w-full text-center">
+          <div className="flex justify-center items-center gap-2 text-orange-500 mb-4">
+            <FiFeather /><h2 className="font-semibold text-sm">Customer Reviews</h2><FiFeather />
+          </div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-900 mb-6">
                  Customer Reviews
             </h2>
