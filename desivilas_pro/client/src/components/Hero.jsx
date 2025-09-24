@@ -60,8 +60,8 @@ export default function Hero() {
             className="mt-5 text-5xl leading-[1.05] font-extrabold sm:text-6xl lg:text-7xl"
             style={{ fontFamily: 'serif' }}
           >
-            Unforgettable flavors, <br className="hidden sm:block" />
-            elegantly served
+            Deliciously crafted <br className="hidden sm:block" />
+            Freshly Served
           </motion.h1>
 
           <motion.p
@@ -69,14 +69,17 @@ export default function Hero() {
             custom={2}
             className="mt-5 max-w-2xl text-base sm:text-lg text-white/80 mx-auto lg:mx-0"
           >
-            Bespoke menus for weddings, events, and intimate gatherings precision service and vibrant cuisine come standard.
           </motion.p>
 
           <motion.div variants={fadeUp} custom={3} className="mt-10 flex justify-center lg:justify-start">
             <Buttons
               label="Get In Touch"
+
+     
+
               onPrimaryClick={handleGetInTouch}
               onArrowClick={handleGetInTouch}
+
               gap="gap-4"
             />
           </motion.div>

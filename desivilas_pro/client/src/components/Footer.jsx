@@ -13,7 +13,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><a href="/about" className="text-gray-400 hover:text-orange-500 transition-colors">About Us</a></li>
               <li><a href="/menu" className="text-gray-400 hover:text-orange-500 transition-colors">Menu</a></li>
-              <li><a href="/pricing" className="text-gray-400 hover:text-orange-500 transition-colors">Pricing</a></li>
+              <li><a href="/pricing" className="text-gray-400 hover:text-orange-500 transition-colors">Order Online</a></li>
               <li><a href="/contact" className="text-gray-400 hover:text-orange-500 transition-colors">Contact</a></li>
             </ul>
           </div>
@@ -21,10 +21,10 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4">Services</h3>
             <ul className="space-y-3">
-              <li><a href="/services#corporate" className="text-gray-400 hover:text-orange-500 transition-colors">Corporate Events</a></li>
-              <li><a href="/services#custom-menus" className="text-gray-400 hover:text-orange-500 transition-colors">Custom Menus</a></li>
-              <li><a href="/services#wedding" className="text-gray-400 hover:text-orange-500 transition-colors">Wedding Catering</a></li>
-              <li><a href="/services#private" className="text-gray-400 hover:text-orange-500 transition-colors">Private Parties</a></li>
+              <li><a href="/services#corporate" className="text-gray-400 hover:text-orange-500 transition-colors">Catering services</a></li>
+              <li><a href="/services#custom-menus" className="text-gray-400 hover:text-orange-500 transition-colors">Dine In Experience</a></li>
+              <li><a href="/services#wedding" className="text-gray-400 hover:text-orange-500 transition-colors">Flavours of the Day</a></li>
+              <li><a href="/services#private" className="text-gray-400 hover:text-orange-500 transition-colors">Social Events</a></li>
             </ul>
           </div>
 
@@ -40,6 +40,8 @@ const Footer = () => {
                 className="h-14 md:h-16 w-auto object-contain"
               />
             </a>
+
+         
             <p className="text-gray-400 flex items-center gap-2">
               <FiPhone className='text-orange-500' /> <a href="tel:+760947845254">+1 (636) 415-8512</a>
             </p>
