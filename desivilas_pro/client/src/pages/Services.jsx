@@ -117,7 +117,7 @@ const Services = () => {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight"
           >
-            Services &amp; Menu
+            Catering Services
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}

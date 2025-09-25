@@ -12,7 +12,7 @@ const Header = React.forwardRef((props, ref) => {
     { name: 'home', href: '/' },
     { name: 'menu', href: '/menu' },
     { name: 'about us', href: '/about' },
-    { name: 'services', href: '/services' },
+    { name: 'catering', href: '/services' },
     { name: 'gallery', href: '/gallery' },
     { name: 'order', href: '/order' },
   ];
